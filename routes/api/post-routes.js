@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const { Post, User, Vote } = require('../../models');
+const { Post, User, Vote, Comment } = require('../../models');
 const sequelize = require('../../config/connection');
 
 // get all users
 router.get('/', (req, res) => {
     Post.findAll({
         // Query configuration
+        order: [['created_at', 'DESC']],
         attributes: [
             'id', 
             'post_url', 
@@ -16,12 +17,19 @@ router.get('/', (req, res) => {
         order: [['created_at', 'DESC']],
     include: [
         {
-            model: User,
+            model: Comment,
+            attribute: ['id', 'comment_text', 'post_id', 'user_id','created_at'],
+            include: {
+                model: User,
+            
             attributes: ['username']
         }
-    ]
-    
-    
+    },
+    {
+        model: User,
+        attributes: ['username']
+    }
+    ] 
 })
 .then(dbPostData => res.json(dbPostData))
 .catch(err => {
@@ -44,12 +52,20 @@ router.get('/:id', (req, res) => {
         ],
         include: [
             {
-                model: User,
+                model: Comment,
+                attribute: ['id', 'comment_text', 'post_id', 'user_id','created_at'],
+                include: {
+                    model: User,
+                
                 attributes: ['username']
             }
-        ]
+        },
+        {
+            model: User,
+            attributes: ['username']
+        }
+        ] 
     })
- 
 .then(dbPostData => {
     if (!dbPostData) {
         res.status(404).json({ message: 'No post found with this id' });
