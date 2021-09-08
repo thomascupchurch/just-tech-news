@@ -2,34 +2,31 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Tech News</title>
-    <link rel="stylesheet" href="../../public/stylesheets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Just Tech News</title>
+  <link rel="stylesheet" href="../../public/stylesheets/style.css">
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <h1>
-                <a href="/">Just Tech News</a>
-            </h1>
-            <nav>
-                <a href="../../public/javascript/login.js">login</a>
-            </nav>
-            <nav>
-                <button id="logout" class="btn-no-style">logout</button>
-                <a href="../../public/javascript/login.js">login</a>
-            </nav>
-        </header>
-        <main>
-            {{{ body }}}
-        </main>
-        <footer>
-            Thanks for visiting!
-        </footer>
-    </div>
-    <script src="../../public/javascript/logout.js"></script>
+  <div class="wrapper">
+    <header>
+      <h1>
+        <a href="/">Just Tech News</a>
+      </h1>
+      <nav>
+        <button id="logout" class="btn-no-style">logout</button>
+        <a href="/login">login</a>
+      </nav>
+    </header>
+    <main>
+      {{{ body }}}
+    </main>
+    <footer>
+      Thanks for visiting!
+    </footer>
+  </div>
+
 </body>
 
 </html>
