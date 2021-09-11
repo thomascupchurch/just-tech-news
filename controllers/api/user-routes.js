@@ -76,7 +76,7 @@ router.post('/', withAuth, (req, res) => {
     });
 });
 
-router.post('/login', withAuth, (req, res) => {
+router.post('/login', (req, res) => {
   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
     where: {
@@ -99,8 +99,10 @@ router.post('/login', withAuth, (req, res) => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-  
+      
+      res.redirect('/dashboard');
       res.json({ user: dbUserData, message: 'You are now logged in!' });
+
     });
   });
 });
